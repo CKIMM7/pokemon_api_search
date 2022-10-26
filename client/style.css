@@ -1,0 +1,65 @@
+header a img{
+    width: 200px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+body {
+    background-color: rgb(82, 240, 153);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input {
+    width: 300px;
+    border: 3px solid darkslategray;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+form button {
+    background-color: darkslategray;
+    border: none;
+    color: white;
+    padding: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.pokemon img {
+    width: 200px;
+    height: 200px;
+}
+
+.pokemon {
+    background-color: darkslategray;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    border-radius: 30px;
+    margin: 20px;
+}
+
+.pokemon ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+#out {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
