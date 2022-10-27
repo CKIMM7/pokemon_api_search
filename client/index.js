@@ -83,8 +83,12 @@ function addPokemon (e) {
 
 function getPokemon () {
     fetch('http://localhost:3000/api/pokemon')
-    .then(r => r.json())
-    .then(data => {pokemonArray = data; displayAll()})
+    .then(res => res.json())
+    .then(data => {
+        pokemonArray = data; 
+        displayAll()
+    })
+
     return pokemonArray
 }
 

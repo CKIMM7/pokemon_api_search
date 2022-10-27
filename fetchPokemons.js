@@ -1,4 +1,4 @@
-let pokemon1 = 'pikachu'
+let allPokemonsGlocal =[];
 const fetch = require('node-fetch');
 
 async function getEvolutionChains (num) {
@@ -16,8 +16,6 @@ async function getEvolutionChains (num) {
 async function getInfo (pokemon) {
 
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
-
-
     const res =  await fetch(url)
     const data = await res.json()
     let types = []
@@ -35,14 +33,13 @@ async function getInfo (pokemon) {
 }
 
 
-async function callPokemons (pokemon) {
+async function callPokemons () {
 
     let url = `https://pokeapi.co/api/v2/pokemon`;
-    const res =  await fetch(url)
-    const data = await res.json()
+    const res =  await fetch(url);
+    const data = await res.json();
 
     let nameList = []
-    //console.log(data);
     data.results.forEach(elem => {
         //console.log(elem.name);
         getInfo(elem.name).then(result => {
@@ -50,10 +47,17 @@ async function callPokemons (pokemon) {
         })}
         )
 
-    //console.log(nameList)
-
     return nameList;
 }
 
+async function allPokemonsGlocalFunc () {
+    allPokemonsGlocal = await callPokemons();
+    console.log(allPokemonsGlocal);
 
-module.exports = { callPokemons, getInfo, getEvolutionChains }
+    return allPokemonsGlocal;
+}
+
+allPokemonsGlocalFunc()
+
+
+module.exports = { callPokemons, getInfo, getEvolutionChains, allPokemonsGlocal }

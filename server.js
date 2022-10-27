@@ -7,7 +7,6 @@ const path = require('path');
 const callPokemons = require('./fetchPokemons');
 
 app.use(express.json())
-app.use(express.urlencoded());
 app.use(cors());
 app.use('/', express.static(path.join(__dirname, 'client')));
 
@@ -16,13 +15,12 @@ let errorPath = path.join(__dirname, '/client');
 
 let allPokemonsGlocal;
 
-async function allPokemonsGlocalFunc () {
-    allPokemonsGlocal = await callPokemons.callPokemons();
-
+async function getpokes () {
+    allPokemonsGlocal = await callPokemons.callPokemons()
     return allPokemonsGlocal;
 }
+getpokes();
 
-allPokemonsGlocalFunc();
 
 app.get('/', async (req, res)=> {
 
@@ -33,10 +31,9 @@ app.get('/', async (req, res)=> {
 });
 
 app.get('/api/pokemon', async (req, res)=> {
-    res.send(allPokemonsGlocal);
-});
 
-app.get('/api/pokemon/raw', async (req, res)=> {
+    console.log(`/api/pokemon`);
+    console.log(allPokemonsGlocal);
     res.send(allPokemonsGlocal);
 });
 
@@ -97,9 +94,6 @@ app.put('/pokemon/:name', (req, res)=> {
 
 app.delete('/pokemon/:name', async (req, res)=> {
 
-    // console.log(req.params.name);
-    // console.log(`&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&`);
-    // console.log(allPokemonsGlocal);
 
     const pokemonToDelete = allPokemonsGlocal
     .find(poke=> poke.name === req.params.name)
